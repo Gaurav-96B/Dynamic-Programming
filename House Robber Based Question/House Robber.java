@@ -1,6 +1,6 @@
 class Solution {
     public int rob(int[] nums) {
-        int dp[]=new int[nums.length];
+        int dp[]=new int[nums.length+1];
         Arrays.fill(dp,-1);
         return maxAmount(nums,0,dp);   
     }
