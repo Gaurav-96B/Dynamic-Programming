@@ -5,25 +5,26 @@ class Solution {
         {
             Arrays.fill(row,-1);
         }
-        return lcs(text1,text2,text1.length(),text2.length(),dp);  
+        return LCS(text1,text2,0,0,dp);   
    }
-    public int lcs(String text1,String text2,int m,int n,int dp[][])
+    public int LCS(String s1,String s2,int i,int j,int dp[][])
     {
-        if(m==0||n==0)
+      if(i==s1.length()||j==s2.length())
+      {
+         return 0; 
+      }
+        if(dp[i][j]!=-1)
         {
-            return 0;
+            return dp[i][j];
         }
-        if(dp[m][n]!=-1)
+        if(s1.charAt(i)==s2.charAt(j))
         {
-            return dp[m][n];
-        }
-        if(text1.charAt(m-1)==text2.charAt(n-1))
-        {
-            return dp[m][n]=1+lcs(text1,text2,m-1,n-1,dp);
+            return dp[i][j]= 1+LCS(s1,s2,i+1,j+1,dp);
         }
         else
         {
-        return dp[m][n]=Math.max(lcs(text1,text2,m-1,n,dp),lcs(text1,text2,m,n-1,dp));
+            return dp[i][j]= Math.max(LCS(s1,s2,i+1,j,dp),LCS(s1,s2,i,j+1,dp));
         }
     }
+    
 }
