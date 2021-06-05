@@ -16,25 +16,25 @@ class Solution {
         {
             charSum=charSum+s2.charAt(i);
         }
-        return charSum-(2*lcs(s1,s2,s1.length(),s2.length(),dp));
+        return charSum-(2*lcs(s1,s2,0,0,dp));
     }
-    public int lcs(String s1,String s2,int m,int n,int dp[][])
+    public int lcs(String s1,String s2,int i,int j,int dp[][])
     {
-       if(m==0|| n==0)
+       if(i==s1.length()||j==s2.length())
         {
         return 0;
         }
-        if(dp[m-1][n-1]!=-1)
+        if(dp[i][j]!=-1)
         {
-            return dp[m-1][n-1];
+            return dp[i][j];
         }
-        else if(s1.charAt(m-1)==s2.charAt(n-1))
+        else if(s1.charAt(i)==s2.charAt(j))
         {
-       return  dp[m-1][n-1]=s1.charAt(m-1)+lcs(s1,s2,m-1,n-1,dp);
+        return  dp[i][j]=s1.charAt(i)+lcs(s1,s2,i+1,j+1,dp);
         }
         else
         {
-       return  dp[m-1][n-1]=Math.max(lcs(s1,s2,m-1,n,dp),lcs(s1,s2,m,n-1,dp));
+        return  dp[i][j]=Math.max(lcs(s1,s2,i+1,j,dp),lcs(s1,s2,i,j+1,dp));
         } 
 }
 }
